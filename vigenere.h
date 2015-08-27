@@ -2,6 +2,6 @@
 #define VIGENERE_H
 
 void generateTabula(char tabula[]);
-void cryptTest(char in[], char out[], char key[]);
+void cryptText(char in[], char out[], char key[]);
 
 #endif

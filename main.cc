@@ -4,7 +4,7 @@ using namespace std;
 #include "vigenere.h" 
 
 int main(int argc, char * argv[]) {
-  generateMatrix("tabulaRecta.txt");
+  generateTabula("tabulaRecta.txt");
   if (argc == 4) {
     cryptText(argv[1], argv[2], argv[3]);
   } else {
