@@ -49,7 +49,7 @@ void cryptTest(char in[], char out[], char key[]) {
   out.close();
 }
 
-char * cryptLine(static char line[], static char key[]) {
+static char * cryptLine(static char line[], static char key[]) {
   int i=0, y=0;
   char * tmp = new char[LINE];
   while(line[i] != '\0') {
@@ -64,7 +64,7 @@ char * cryptLine(static char line[], static char key[]) {
   return tmp;
 }
 
-int getNumber(char c) {
+static int getNumber(char c) {
   char tmp = tolower(c);
   int pos = 'a'- tmp;
   return tmp;
