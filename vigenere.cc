@@ -1,6 +1,7 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 static int DIM = 26;
 static int LINE = 100;
@@ -34,15 +35,37 @@ void cryptTest(char in[], char out[], char key[]) {
   while(!in.eof()) {
     in >> c;
     if (c == '\n') {
+      tmp[i] = '\0';
       crypted = cryptLine(tmp, key);
       out << crypted << '\n';
       delete crypted;
       crypted = null;
     } else {
       tmp[i] = c;
-      c++;
+      i++;
     }
   }
   in.close();
   out.close();
 }
+
+char * cryptLine(static char line[], static char key[]) {
+  int i=0, y=0;
+  char * tmp = new char[LINE];
+  while(line[i] != '\0') {
+    tmp[i] = tabulaRecta[getNumber(line[i])][getNumber(key[y])];
+    if (y == key.length()-1) {
+      y=0;
+    } else {
+      y++;
+    }
+    i++;
+  }
+  return tmp;
+}
+
+int getNumber(char c) {
+  char tmp = tolower(c);
+  int pos = 'a'- tmp;
+  return tmp;
+} 
