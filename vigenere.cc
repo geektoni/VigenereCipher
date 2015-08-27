@@ -6,6 +6,28 @@ static int DIM = 26;
 static int LINE = 100;
 char tabulaRecta[DIM][DIM];
 
+static int getNumber(char c) {
+  char tmp = tolower(c);
+  int pos = 'a'- tmp;
+  return tmp;
+} 
+
+char * cryptLine(const char line[], const char key[]) {
+  int i=0, y=0;
+  char * tmp = new char[LINE];
+  while(line[i] != '\0') {
+    tmp[i] = tabulaRecta[getNumber(line[i])][getNumber(key[y])];
+    if (y == strlen(key)-1) {
+      y=0;
+    } else {
+      y++;
+    }
+    i++;
+  }
+  return tmp;
+}
+
+
 void generateMatrix(char tabula[] ) {
   fstream in;
   char tmp;
@@ -23,14 +45,14 @@ void generateMatrix(char tabula[] ) {
   in.close();
 }
 
-void cryptTest(char in[], char out[], char key[]) {
+void cryptTest(char inFile[], char outFile[], char key[]) {
   fstream in, out;
   char tmp[LINE];
   char * crypted;
   char c;
   int i=0;
-  in.open(in, ios::in);
-  out.open(out, ios:out);
+  in.open(inFile, ios::in);
+  out.open(outFile, ios::out);
   while(!in.eof()) {
     in >> c;
     if (c == '\n') {
