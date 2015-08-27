@@ -2,15 +2,16 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include "vigenere.h"
 
-static int DIM = 26;
-static int LINE = 100;
+const int DIM = 26;
+const int LINE = 100;
 char tabulaRecta[DIM][DIM];
 
 static int getNumber(char c) {
   char tmp = tolower(c);
   int pos = 'a'- tmp;
-  return tmp;
+  return pos;
 } 
 
 char * cryptLine(const char line[], const char key[]) {
@@ -29,24 +30,27 @@ char * cryptLine(const char line[], const char key[]) {
 }
 
 
-void generateMatrix(char tabula[] ) {
+void generateTabula(char tabula[] ) {
   fstream in;
-  char tmp;
+  char tmp = 'a';
   int x=0, y=0;
   in.open(tabula, ios::in);
   while(!in.eof()) {
     in >> tmp;
-    if (tmp == '\n') {
-      y++;
-    } else {
-      tabulaRecta[x][y] = tmp;
-      x++;
+    if (tmp != ' ') {
+      if (tmp == '\n') {
+        y++;
+        x=0;
+      } else {
+        tabulaRecta[x][y] = tmp;
+        x++;
+      }
     }
   }
   in.close();
 }
 
-void cryptTest(char inFile[], char outFile[], char key[]) {
+void cryptText(char inFile[], char outFile[], char key[]) {
   fstream in, out;
   char tmp[LINE];
   char * crypted;
@@ -60,7 +64,7 @@ void cryptTest(char inFile[], char outFile[], char key[]) {
       crypted = cryptLine(tmp, key);
       out << crypted << '\n';
       delete crypted;
-      crypted = null;
+      crypted = NULL;
     } else {
       tmp[i] = c;
       c++;
