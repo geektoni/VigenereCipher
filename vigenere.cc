@@ -62,17 +62,20 @@ void printTabula() {
 
 void cryptText(char inFile[], char outFile[], char key[]) {
   fstream in, out;
-  char tmp[LINE];
+  char * tmp;
   char * crypted;
   int i=0;
   in.open(inFile, ios::in);
   out.open(outFile, ios::out);
   while(!in.eof()) {
+    tmp = new char[LINE];
     in.getline(tmp, LINE);
     crypted = cryptLine(tmp, key);
     out << crypted << endl;
     delete crypted;
+    delete tmp;
     crypted = NULL;
+    tmp = NULL;
   }
   in.close();
   out.close();
