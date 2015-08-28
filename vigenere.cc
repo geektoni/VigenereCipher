@@ -71,6 +71,7 @@ void cryptText(char inFile[], char outFile[], char key[]) {
     tmp = new char[LINE];
     in.getline(tmp, LINE);
     crypted = cryptLine(tmp, key);
+    cout << crypted << endl;
     out << crypted << endl;
     delete crypted;
     delete tmp;
