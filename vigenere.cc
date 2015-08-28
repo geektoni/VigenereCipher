@@ -18,7 +18,7 @@ char * cryptLine(const char line[], const char key[]) {
   int i=0, y=0,k=0, dim=strlen(key);
   char * tmp = new char[LINE];
   while(i < strlen(line)) {
-    if (line[i] != ' ') {
+    if (line[i] != ' ' && (line[i] >= 'a' || line[i] <= 'z')) {
       tmp[k] = tabulaRecta[getNumber(line[i])][getNumber(key[y])];
       if (y == dim-1) {
         y=0;
