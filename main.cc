@@ -12,10 +12,10 @@ int main(int argc, char * argv[]) {
     cout << "Decrypt or Encrypt (d/e): ";
     cin >> c;
     switch(c) {
-      case 'd':
+      case 'e':
         cryptText(argv[1], argv[2], argv[3]);
       break;
-      case 'e':
+      case 'd':
         decryptText(argv[1], argv[2], argv[3]);
       break;
       default:
