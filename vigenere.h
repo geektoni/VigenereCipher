@@ -3,6 +3,7 @@
 
 void generateTabula(char tabula[]);
 void cryptText(char in[], char out[], char key[]);
+void decryptText(char [], char [], char []);
 void printTabula();
 
 #endif

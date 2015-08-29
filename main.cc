@@ -1,5 +1,6 @@
 using namespace std;
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include "vigenere.h" 
 
@@ -7,7 +8,21 @@ int main(int argc, char * argv[]) {
   char fileName[] = "tabulaRecta";
   generateTabula(fileName);
   if (argc == 4) {
-    cryptText(argv[1], argv[2], argv[3]);
+    char c;
+    cout << "Decrypt or Encrypt (d/e): ";
+    cin >> c;
+    switch(c) {
+      case 'd':
+        cryptText(argv[1], argv[2], argv[3]);
+      break;
+      case 'e':
+        decryptText(argv[1], argv[2], argv[3]);
+      break;
+      default:
+        cout << "I didn't understand. Exiting";
+        exit(1);
+      break;  
+    }
   } else {
     cout << "Usage: input.txt output.txt encryption_key" << endl;
     cout << "Exiting" << endl;
