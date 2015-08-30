@@ -17,7 +17,7 @@ static int getNumber(char c) {
 
 /* Get the given letter position inside a line on the tabula */
 static int getDecNumber(char array[][DIM], char c, int y) {
-  int i =0;
+  int i=0;
   while(i < 26 && array[i][y] != c) {
     i++;
   }
@@ -26,7 +26,7 @@ static int getDecNumber(char array[][DIM], char c, int y) {
 
 /* Crypt one line of text with the given key*/
 char * cryptLine(const char line[], const char key[]) {
-  int i=0, y=0,k=0, dim=strlen(key);
+  unsigned int i=0, y=0,k=0, dim=strlen(key);
   char * tmp = new char[LINE];
   while(i < strlen(line)) {
     if (line[i] != ' ' && (line[i] >= 'a' || line[i] <= 'z')) {
@@ -45,7 +45,7 @@ char * cryptLine(const char line[], const char key[]) {
 
 /* Decrypt one line of text, given the key */
 char * decryptLine(const char line[], const char key[]) {
-  int i=0, y=0,k=0, dim=strlen(key);
+  unsigned int i=0, y=0,k=0, dim=strlen(key);
   char * tmp = new char[LINE];
   while(i < strlen(line)) {
     if (line[i] != ' ' && (line[i] >= 'a' || line[i] <= 'z')) {
@@ -87,7 +87,6 @@ void cryptText(char inFile[], char outFile[], char key[]) {
   fstream in, out;
   char * tmp;
   char * crypted;
-  int i=0;
   in.open(inFile, ios::in);
   out.open(outFile, ios::out);
   while(!in.eof()) {
@@ -109,7 +108,6 @@ void decryptText(char inFile[], char outFile[], char key[]) {
   fstream in, out;
   char * tmp;
   char * decrypted;
-  int i=0;
   in.open(inFile, ios::in);
   out.open(outFile, ios::out);
   while(!in.eof()) {
