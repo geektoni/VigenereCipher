@@ -8,12 +8,14 @@ const int DIM = 26;
 const int LINE = 100;
 char tabulaRecta[DIM][DIM];
 
+/* Get the given letter position inside alphabet */
 static int getNumber(char c) {
   char tmp = tolower(c);
   int pos = tmp-'a';
   return pos;
 }
 
+/* Get the given letter position inside a line on the tabula */
 static int getDecNumber(char array[][DIM], char c, int y) {
   int i =0;
   while(i < 26 && array[i][y] != c) {
@@ -22,6 +24,7 @@ static int getDecNumber(char array[][DIM], char c, int y) {
   return i;
 }  
 
+/* Crypt one line of text with the given key*/
 char * cryptLine(const char line[], const char key[]) {
   int i=0, y=0,k=0, dim=strlen(key);
   char * tmp = new char[LINE];
@@ -40,6 +43,7 @@ char * cryptLine(const char line[], const char key[]) {
   return tmp;
 }
 
+/* Decrypt one line of text, given the key */
 char * decryptLine(const char line[], const char key[]) {
   int i=0, y=0,k=0, dim=strlen(key);
   char * tmp = new char[LINE];
@@ -59,6 +63,7 @@ char * decryptLine(const char line[], const char key[]) {
   return tmp;
 }
 
+/* Generate the tabula */
 void generateTabula(char tabula[] ) {
   fstream in;
   char tmp;
@@ -77,6 +82,7 @@ void generateTabula(char tabula[] ) {
   in.close();
 }
 
+/* Crypt an entire text and put it inside an output file */
 void cryptText(char inFile[], char outFile[], char key[]) {
   fstream in, out;
   char * tmp;
@@ -88,7 +94,6 @@ void cryptText(char inFile[], char outFile[], char key[]) {
     tmp = new char[LINE];
     in.getline(tmp, LINE);
     crypted = cryptLine(tmp, key);
-    cout << crypted << endl;
     out << crypted << endl;
     delete crypted;
     delete tmp;
@@ -99,6 +104,7 @@ void cryptText(char inFile[], char outFile[], char key[]) {
   out.close();
 }
 
+/* Decrypt a text and put it inside and out file */
 void decryptText(char inFile[], char outFile[], char key[]) {
   fstream in, out;
   char * tmp;
@@ -110,7 +116,6 @@ void decryptText(char inFile[], char outFile[], char key[]) {
     tmp = new char[LINE];
     in.getline(tmp, LINE);
     decrypted = decryptLine(tmp, key);
-    cout << decrypted << endl;
     out << decrypted << endl;
     delete decrypted;
     delete tmp;
