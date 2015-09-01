@@ -29,12 +29,16 @@ char * cryptLine(const char line[], const char key[]) {
   unsigned int i=0, y=0,k=0, dim=strlen(key);
   char * tmp = new char[LINE];
   while(i < strlen(line)) {
-    if (line[i] != ' ' && (line[i] >= 'a' || line[i] <= 'z')) {
-      tmp[k] = tabulaRecta[getNumber(line[i])][getNumber(key[y])];
-      if (y == dim-1) {
-        y=0;
+    if (line[i] != ' ') {
+      if (line[i] >= 'a' || line[i] <= 'z') {
+        tmp[k] = tabulaRecta[getNumber(line[i])][getNumber(key[y])];
+        if (y == dim-1) {
+          y=0; 
+        } else {
+          y++;
+        }
       } else {
-        y++;
+        tmp[k] = line[i];
       }
       k++;
     }
@@ -48,13 +52,17 @@ char * decryptLine(const char line[], const char key[]) {
   unsigned int i=0, y=0,k=0, dim=strlen(key);
   char * tmp = new char[LINE];
   while(i < strlen(line)) {
-    if (line[i] != ' ' && (line[i] >= 'a' || line[i] <= 'z')) {
-      int index = getDecNumber(tabulaRecta, line[i], getNumber(key[y]));
-      tmp[k] = tabulaRecta[index][0];
-      if (y == dim-1) {
-        y=0;
+    if (line[i] != ' ') {
+      if (line[i] >= 'a' || line[i] <= 'z') {
+        int index = getDecNumber(tabulaRecta, line[i], getNumber(key[y]));
+        tmp[k] = tabulaRecta[index][0];
+        if (y == dim-1) {
+          y=0;
+        } else {
+          y++;
+        }
       } else {
-        y++;
+        tmp[k] = line[i];
       }
       k++;
     }
