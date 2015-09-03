@@ -5,11 +5,9 @@ using namespace std;
 #include "vigenere.h" 
 
 int main(int argc, char * argv[]) {
-  char fileName[] = "tabulaRecta", c;
   
-  /* Generate the matrix used by algorithm */
-  generateTabula(fileName);
-  
+  char c; 
+ 
   /* Check if there are enough arguments */
   if (argc == 4) {
     cout << "Decrypt or Encrypt (d/e): ";
